@@ -135,13 +135,5 @@ void selectMii() {
 
 void promptUser() {
   printf("Press A to bring up Mii selector with default settings.\n");
-  cfguInit();
-  u16 username[0x1C];
-  CFGU_GetConfigInfoBlk2(0x1C, 0x000A0000, username);
-  char utf8_username[11];
-  ssize_t len = utf16_to_utf8((uint8_t *)utf8_username, username,
-                              sizeof(utf8_username) - 1);
-  utf8_username[len] = '\0';
-  printf("Username: %s\n", utf8_username);
   printf("Press START to exit.\n");
 }
