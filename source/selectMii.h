@@ -116,7 +116,7 @@ void saveMii() {
   printf("Encoded data: %s\n", hexString);
 
   // Write encoded MiiData String to file
-  FILE *file = fopen("mii_data.txt", "w");
+  FILE *file = fopen("miiData", "w");
   if (!file) {
     printf("Failed to open file for writing.\n");
     return;
