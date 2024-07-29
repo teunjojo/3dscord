@@ -65,9 +65,7 @@ uint8_t *encodeStudio(MiiData *mii) {
   encodeMiiPart(mii->mole_details.enable ? 1 : 0);
   encodeMiiPart(mii->mole_details.xpos);
   encodeMiiPart(mii->mole_details.ypos);
-  printf("Mole y position: %d\n", mii->mole_details.ypos);
   encodeMiiPart(mii->mouth_details.yscale);
-  printf("Mouth y scale: %d\n", mii->mouth_details.yscale);
 
   if (mii->mouth_details.color < 4) {
     encodeMiiPart(mii->mouth_details.color + 19);
@@ -109,7 +107,6 @@ void saveMii() {
     return;
   }
 
-  printf("A Mii was selected.\n");
   uint8_t *encodedData = encodeStudio(&msRet.mii);
 
   char hexString[0x2F * 2 +
