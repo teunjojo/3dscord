@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <3ds.h>
+#include "./selectMii.h"'
 
 int main(int argc, char* argv[])
 {
 	gfxInitDefault();
 	consoleInit(GFX_TOP, NULL);
 
-	printf("3dscord!\n");
+	promptUser();
 
 	// Main loop
 	while (aptMainLoop())
@@ -21,6 +22,9 @@ int main(int argc, char* argv[])
 		u32 kDown = hidKeysDown();
 		if (kDown & KEY_START)
 			break; // break in order to return to hbmenu
+		
+		if (kDown & KEY_A)
+			selectMii();
 	}
 
 	gfxExit();
