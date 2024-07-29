@@ -19,6 +19,9 @@ void encodeMiiPart(uint8_t partValue) {
 
 uint8_t *encodeStudio(MiiData *mii) {
 
+  next = 0;
+  pos = 1;
+
   memset(miiStudioData, 0, sizeof(miiStudioData));
 
   encodeMiiPart(mii->beard_details.color == 0 ? 8 : mii->beard_details.color);
