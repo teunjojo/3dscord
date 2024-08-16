@@ -26,12 +26,12 @@ void renderScene(C3D_RenderTarget *screen, C2D_Text *dynTimeText) {
 int main(int argc, char *argv[]) {
   gfxInitDefault();
   C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
-	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
-	C2D_Prepare();
+  C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
+  C2D_Prepare();
   consoleInit(GFX_BOTTOM, NULL);
 
   // Create screens
-	C3D_RenderTarget* screen = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
+  C3D_RenderTarget *screen = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 
   cfguInit();
   u16 username[0x1C];
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
   utf8_username[len] = '\0';
 
   C2D_TextBuf dynTimeBuf = C2D_TextBufNew(4096);
-C2D_Text dynTimeText;
+  C2D_Text dynTimeText;
 
   // Main loop
   while (aptMainLoop()) {
@@ -56,23 +56,22 @@ C2D_Text dynTimeText;
     if (kDown & KEY_A)
       selectMii();
 
-      // Get the current time as a string
-  time_t unixTime = time(NULL);
-  struct tm* timeStruct = gmtime((const time_t *)&unixTime);
-  char timeString[9];
-  strftime(timeString, sizeof(timeString), "%H:%M", timeStruct);
+    // Get the current time as a string
+    time_t unixTime = time(NULL);
+    struct tm *timeStruct = gmtime((const time_t *)&unixTime);
+    char timeString[9];
+    strftime(timeString, sizeof(timeString), "%H:%M", timeStruct);
 
     // Parse the time into the text buffer
-  C2D_TextBufClear(dynTimeBuf);
-  C2D_TextParse(&dynTimeText, dynTimeBuf, timeString);
-  C2D_TextOptimize(&dynTimeText);
+    C2D_TextBufClear(dynTimeBuf);
+    C2D_TextParse(&dynTimeText, dynTimeBuf, timeString);
+    C2D_TextOptimize(&dynTimeText);
 
     renderScene(screen, &dynTimeText);
-    
   }
 
   C2D_Fini();
-	C3D_Fini();
+  C3D_Fini();
   gfxExit();
   return 0;
 }
