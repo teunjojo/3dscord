@@ -1,3 +1,4 @@
+#pragma once
 #include <3ds.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -101,12 +102,10 @@ void bufferToHex(const uint8_t *buffer, size_t length, char *hexString) {
 void saveMii() {
 
   if (!miiSelectorChecksumIsValid(&msRet)) {
-    printf("Return checksum invalid.\n");
     return;
   }
 
   if (msRet.no_mii_selected) {
-    printf("No Mii was selected.\n");
     return;
   }
 
@@ -116,27 +115,16 @@ void saveMii() {
                  1]; // Each byte as two hex characters plus null terminator
   bufferToHex(encodedData, 0x2F, hexString);
 
-  printf("Encoded data: %s\n", hexString);
-
   // Write encoded MiiData String to file
   FILE *file = fopen("miiData", "w");
   if (!file) {
-    printf("Failed to open file for writing.\n");
     return;
   }
-  printf("Writing encoded MiiData to file...");
-  fprintf(file, "%s", hexString);
   fclose(file);
-  printf("done.\n");
 }
 
 void selectMii() {
   miiSelectorInit(&msConf);
   miiSelectorLaunch(&msConf, &msRet);
   saveMii();
-}
-
-void promptUser() {
-  printf("Press A to bring up Mii selector with default settings.\n");
-  printf("Press START to exit.\n");
 }
