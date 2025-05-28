@@ -81,7 +81,7 @@ uint8_t *encodeStudio(MiiData *mii) {
   encodeMiiPart(mii->mouth_details.style); // 30
   encodeMiiPart(mii->mustache_details.mouth_yposition);
   encodeMiiPart(mii->beard_details.scale);
-  encodeMiiPart(mii->mustache_details.mustach_style);
+  encodeMiiPart(mii->mustache_details.mustache_style);
   encodeMiiPart(mii->beard_details.ypos);
   encodeMiiPart(mii->nose_details.scale);
   encodeMiiPart(mii->nose_details.style);
